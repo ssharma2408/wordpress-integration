@@ -111,6 +111,36 @@
                 </ul>
             </li>
         @endcan
+        @can('document_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.documents.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/documents") || request()->is("admin/documents/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.document.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('document_version_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.document-versions.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/document-versions") || request()->is("admin/document-versions/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.documentVersion.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('client_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.clients.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/clients") || request()->is("admin/clients/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.client.title') }}
+                </a>
+            </li>
+        @endcan
         @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
                 <li class="c-sidebar-nav-item">
