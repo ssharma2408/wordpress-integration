@@ -144,6 +144,66 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 34,
+                'title' => 'document_create',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'document_edit',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'document_show',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'document_delete',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'document_access',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'document_version_create',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'document_version_edit',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'document_version_show',
+            ],
+            [
+                'id'    => 42,
+                'title' => 'document_version_delete',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'document_version_access',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'client_create',
+            ],
+            [
+                'id'    => 45,
+                'title' => 'client_edit',
+            ],
+            [
+                'id'    => 46,
+                'title' => 'client_show',
+            ],
+            [
+                'id'    => 47,
+                'title' => 'client_delete',
+            ],
+            [
+                'id'    => 48,
+                'title' => 'client_access',
+            ],
+            [
+                'id'    => 49,
                 'title' => 'profile_password_edit',
             ],
         ];

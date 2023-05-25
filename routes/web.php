@@ -36,6 +36,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Orders
     Route::delete('orders/destroy', 'OrdersController@massDestroy')->name('orders.massDestroy');
     Route::resource('orders', 'OrdersController');
+
+    // Document
+    Route::delete('documents/destroy', 'DocumentController@massDestroy')->name('documents.massDestroy');
+    Route::post('documents/media', 'DocumentController@storeMedia')->name('documents.storeMedia');
+    Route::post('documents/ckmedia', 'DocumentController@storeCKEditorImages')->name('documents.storeCKEditorImages');
+    Route::resource('documents', 'DocumentController');
+
+    // Document Version
+    Route::delete('document-versions/destroy', 'DocumentVersionController@massDestroy')->name('document-versions.massDestroy');
+    Route::post('document-versions/media', 'DocumentVersionController@storeMedia')->name('document-versions.storeMedia');
+    Route::post('document-versions/ckmedia', 'DocumentVersionController@storeCKEditorImages')->name('document-versions.storeCKEditorImages');
+    Route::resource('document-versions', 'DocumentVersionController');
+
+    // Client
+    Route::delete('clients/destroy', 'ClientController@massDestroy')->name('clients.massDestroy');
+    Route::resource('clients', 'ClientController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
