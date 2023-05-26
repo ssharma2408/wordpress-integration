@@ -67,7 +67,7 @@
             </div>
             <div class="form-group">
                 <label for="content">{{ trans('cruds.document.fields.content') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content" id="content">{!! old('content', $document->content) !!}</textarea>
+                <textarea class="form-control tinymce {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content" id="content">{!! old('content', $document->content) !!}</textarea>
                 @if($errors->has('content'))
                     <div class="invalid-feedback">
                         {{ $errors->first('content') }}
@@ -90,6 +90,10 @@
 
 @section('scripts')
 <script>
+	 tinymce.init({
+            selector: 'textarea.tinymce',
+            height: 600
+        });
     $(document).ready(function () {
   function SimpleUploadAdapter(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {

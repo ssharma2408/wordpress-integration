@@ -75,9 +75,12 @@
                 <span class="help-block">{{ trans('cruds.document.fields.content_helper') }}</span>
             </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="submit">
-                    {{ trans('global.save') }}
+                <button id = "load_btn" class="btn btn-danger" type="button">
+                    Load
                 </button>
+				<button class="btn btn-danger" type="submit">
+                    {{ trans('global.save') }}
+                </button>				
             </div>
         </form>
     </div>
@@ -150,6 +153,54 @@
     );
   }
 });
+
+/* $(document).on('click', '#load_btn', function(event) {
+        event.preventDefault();        
+
+        getHTML();
+
+    });
+    var getHTML = function(){
+        $.ajax({
+            method:'POST',
+			header:{
+			  'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+			},
+            url:'gethtml', //Make sure your URL is correct
+              data:{
+				  _token: "{{ csrf_token() }}",
+				  dataType: 'json', 
+				  contentType:'application/json', 
+				},
+            success:function(data){
+                console.log(data); //Please share cosnole data
+                if(data.msg) //Check the data.msg isset?
+                {
+                    $("#content").html(data.msg); //replace html by data.msg
+                }
+
+            }
+        });
+    } */
+	
+	
+	$(document).ready(function(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $("#load_btn").click(function(){
+                $.ajax({
+                    /* the route pointing to the post function */
+                    url: 'gethtml',
+                    type: 'GET',
+                    /* send the csrf-token and the input to the controller */
+                    data: {_token: CSRF_TOKEN, message:$(".getinfo").val()},
+                    dataType: 'JSON',
+                    /* remind that 'data' is the response of the AjaxController */
+                    success: function (data) { 
+                        $("#content").html(data.msg); 
+                    }
+                }); 
+            });
+       });    
 </script>
 
 @endsection

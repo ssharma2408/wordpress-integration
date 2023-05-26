@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
+	
+	Route::get('customers/populate', 'CustomersController@populate')->name('customers.populate');
 
     // Customers
     Route::delete('customers/destroy', 'CustomersController@massDestroy')->name('customers.massDestroy');
@@ -38,16 +40,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('orders', 'OrdersController');
 
     // Document
+	
+	Route::get('ajax', function(){ return view('ajax'); });
+	Route::get('gethtml', 'DocumentController@gethtml');
+	
+	
+	Route::get('documents/download/{id}', 'DocumentController@download')->name('documents.download');
+	
     Route::delete('documents/destroy', 'DocumentController@massDestroy')->name('documents.massDestroy');
     Route::post('documents/media', 'DocumentController@storeMedia')->name('documents.storeMedia');
     Route::post('documents/ckmedia', 'DocumentController@storeCKEditorImages')->name('documents.storeCKEditorImages');
     Route::resource('documents', 'DocumentController');
 
-    // Document Version
+    // Document Version	
     Route::delete('document-versions/destroy', 'DocumentVersionController@massDestroy')->name('document-versions.massDestroy');
     Route::post('document-versions/media', 'DocumentVersionController@storeMedia')->name('document-versions.storeMedia');
     Route::post('document-versions/ckmedia', 'DocumentVersionController@storeCKEditorImages')->name('document-versions.storeCKEditorImages');
-    Route::resource('document-versions', 'DocumentVersionController');
+    Route::resource('document-versions', 'DocumentVersionController');	
 
     // Client
     Route::delete('clients/destroy', 'ClientController@massDestroy')->name('clients.massDestroy');

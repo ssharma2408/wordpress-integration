@@ -37,6 +37,9 @@
                         <th>
                             {{ trans('cruds.customer.fields.email') }}
                         </th>
+						<th>
+                            Discount Percentage
+                        </th>
                         <th>
                             &nbsp;
                         </th>
@@ -62,6 +65,9 @@
                             </td>
                             <td>
                                 {{ $customer->email ?? '' }}
+                            </td>
+							<td>
+                                {{ $customer->role->discount_percentage ?? '' }}%
                             </td>
                             <td>
                                 @can('customer_show')

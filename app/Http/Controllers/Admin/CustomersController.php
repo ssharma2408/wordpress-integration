@@ -12,9 +12,32 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+//WooCommerce Customer
+use Customer as WooCommerceCustomer;
+
 class CustomersController extends Controller
 {
-    public function index()
+    public function populate()
+    {
+        $customers = WooCommerceCustomer::all(['role'=>'all']);
+		
+		$include_role_array = ['customer', 'r1', 'r2', 'r3', 'r4'];
+		foreach($customers as $customer){
+			if(in_array($customer->role, $include_role_array)){								
+				
+				$cust = Customer::firstOrNew(array('email' => $customer->email));
+				$cust->first_name = $customer->first_name;
+				$cust->last_name = $customer->last_name;
+				$cust->email = $customer->email;
+				$cust->role_id = CustomerRole::where('name',$customer->role)->first()->id;
+				$cust->save();				
+			}
+		}
+		echo "Customers populated successfully";
+		
+    }
+	
+	public function index()
     {
         abort_if(Gate::denies('customer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
